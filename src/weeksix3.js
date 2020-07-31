@@ -8,7 +8,7 @@ class App extends Component {
             { type: 'mexican', item: 'taco', id: 3}
         ]
     }
-}
+
 addFood = (food) => {
     food.id = Math.random();
     let meal =[...this.state.meal, food];
@@ -26,4 +26,4 @@ render() {
 
         </div>
     )
-}
+}}
