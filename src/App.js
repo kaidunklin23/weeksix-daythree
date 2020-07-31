@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Meals from './Meal';
+import AddMeal from'./addMeal';
+class App extends Component {
+    state = {
+        meals : [
+            { type: 'american', cost:4,item: 'burger', id: 1},
+            { type: 'japaneese',  cost:10, item: 'sushi', id: 2},
+            { type: 'mexican',  cost:3, item: 'taco', id: 3}
+        ]
+    }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ddMeal = (food) => {
+    meals.id = Math.random();
+    let meals =[...this.state.meals, food];
+    this.setState({
+        meals: meals
+    })
 }
+deleteMeal = (id) => {
+let meals = this.state.meals.filter(meal => {
+    return meal.id !== id
+});
+this.setState({
+    meals: meals
+})
+}
+componentDidMount(){
+    console.log('component mounted');
+}
+componentDidUpdate(prevProps, prevState){
+console.log('component updated');
+console.log(prevProps, prevState);
+}
+render() {
+    return (
+        <div className="App">
+            <h1>Menu</h1>
+            <p>Pick Your Poison</p>
+            <Meals deleteMeal={this.deleteMeal} 
+            meals={this.state.meals}/>
+            <AddMeal addMeal={this.addMeal}/>
 
-export default App;
+        </div>
+    )
+}}
+export default App
